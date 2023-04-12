@@ -24,3 +24,17 @@ Person.prototype.addHobbie = function (hobbie) {
 
 // This is a instance of the Person prototype
 const billy = new Person('Billy', 9, ['To sleep', 'To eat'])
+
+// Prototypes whit the sintaxis of Classes
+class Person2 {
+    constructor(name, age, hobbies){
+        this.name = name;
+        this.age = age;
+        this.hobbies = hobbies;
+    }
+    addHobbies(hobbie){
+        this.hobbies.push(hobbie)
+    }
+}
+
+const valentina = new Person2('Valentina', 24, ['To travel', 'To swimmign'])
