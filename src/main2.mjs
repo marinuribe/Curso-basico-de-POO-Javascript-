@@ -1,10 +1,39 @@
+export class CourseClass{
+    constructor({
+        name,
+        videoID,
+    }){
+        this.name = name;
+        this.videoID = videoID
+    }
+    play(){
+        playVideo(this.videoID)
+    }
+    stop(){
+        stopVideo(this.videoID)
+    }
+}
+function playVideo(id) {
+    const secretURL = 'https://minirockets.com' + id
+    console.log('Se esta reproduciendo el video desde la url' + secretURL);
+}
+function stopVideo(id) {
+    const secretURL = 'https://minirockets.com' + id
+    console.log('Se esta pausando el video');
+}
 class Course {
     constructor({
         name,
         classes = [],
     }){
-        this.name = name;
+        this._name = name;
         this.classes = classes
+    }
+    get name(){
+        return this._name;
+    }
+    set name(newName){
+        this._name = newName;
     }
 }
 
