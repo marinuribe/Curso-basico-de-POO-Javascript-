@@ -1,4 +1,22 @@
- class CourseClass {
+class Comment {
+  constructor({
+    content,
+    studentName,
+    studentRol = 'student',
+  }){
+    this.content = content;
+    this.studentName = studentName;
+    this.studentRol = studentRol;
+    this.likes = 0
+  }
+  publish(){
+    console.log(this.studentName + '(' + this.studentRol + ')')
+    console.log(this.likes + ' likes');
+    console.log(this.content);
+  }
+}
+
+class CourseClass {
   constructor({ name, videoID }) {
     this.name = name;
     this.videoID = videoID;
@@ -41,7 +59,7 @@ const basicProgramming = new Course({
 const cssHtmlCourse = new Course({
   name: 'Curso definitvo de CSS y HTML',
   classes: ['clase1', 'clase2', 'clase3'],
-  lang: 'english'
+  lang: 'english',
 });
 const javascriptCourse = new Course({
   name: 'Curso practico de Javascript',
@@ -106,6 +124,13 @@ class Student {
     this.aprovedCourses = aprovedCourses;
     this.learningPaths = learningPaths;
   }
+  publishComment(commentContent){
+    const comment = new Comment({
+      content: commentContent,
+      studentName: this.name
+    })
+    comment.publish()
+  }
 }
 
 class FreeStudent extends Student {
@@ -142,6 +167,22 @@ class ExpertStudent extends Student {
     this.aprovedCourses.push(newCourse);
   }
 }
+class TeacherStudent extends Student {
+  constructor(props) {
+    super(props);
+  }
+  aproveCourse(newCourse) {
+    this.aprovedCourses.push(newCourse);
+  }
+  publishComment(commentContent){
+    const comment = new Comment({
+      content: commentContent,
+      studentName: this.name,
+      studentRol: 'teacher'
+    })
+    comment.publish()
+  }
+}
 
 const victor = new FreeStudent({
   name: 'Victor',
@@ -156,5 +197,11 @@ const valentina = new BasicStudent({
   email: 'valentina1999@gmail.com',
   twitter: 'valen1218',
   learningPaths: [webDevelopment, dataScience],
-  aprovedCourses: [javascriptCourse]
+  aprovedCourses: [javascriptCourse],
+});
+const juanD = new TeacherStudent({
+  name: 'Juan David',
+  username: 'janda2905',
+  email: 'janda2905@gmail.com',
+  twitter: 'janda2905',
 });
